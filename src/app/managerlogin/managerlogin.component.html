@@ -1,0 +1,110 @@
+<p>managerlogin works!</p>
+
+<h1>Welcome  {{username}}</h1>
+<!-- <button (click)="trq()">TravelRequest</button> -->
+
+
+<!-- <button routerLink="/Createreq">Raise Request</button> -->
+
+<button (click)="ndisp()">Home</button>
+  <button (click)="trq()">TravelRequest</button>
+  <button (click)="vtrq()">View your Request</button>
+  <button routerLink="/Createreq" *ngIf="display">Raise Request</button>
+  <button routerLink="/">Logout</button>
+ <div class="container"> 
+    <table class="table table-trapped" *ngIf="display" >
+     <thead>
+       <tr>
+         <th>Source</th>
+         <th>Destination</th>
+         <th>Travel Date</th>
+         <th>Mode</th>
+         <th>Status</th>
+       </tr> 
+     </thead>
+     
+     <tbody>
+      
+       
+     <tr *ngFor="let f of selfmember" >
+       
+       
+      
+       
+       <td>{{f.source}}</td>
+       <td>{{f.destination}}</td>
+       <td>{{f.travelDate.split("T")[0]}} {{f.travelDate.split("T")[1]}}</td>
+       <td>{{f.travelMode}}</td>
+       <td>{{f.currentStatus}}</td>
+        <button  (click)="detailchk(f)">Details</button>
+        <button (click)="deletechk(f)">Delete</button>
+      
+      
+    
+     </tr>
+    
+     </tbody>
+
+
+
+
+
+
+
+
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+    <table class="table table-trapped" *ngIf="displaynew" >
+      <thead>
+        <tr>
+          <th>Requested By</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Travel Date</th>
+          <th>Mode</th>
+          <th>Status</th>
+        </tr> 
+      </thead>
+      
+      <tbody>
+       
+        
+      <tr *ngFor="let q of member" >
+        
+        
+       
+        <td>{{q.userId}}</td>
+         <td>{{q.source}}</td>
+        <td>{{q.destination}}</td>
+        <td>{{q.travelDate.split("T")[0]}} {{q.travelDate.split("T")[1]}}</td>
+        <td>{{q.travelMode}}</td>
+        <td>{{q.currentStatus}}</td>
+         <button  (click)="detailchk(q)">Details</button>
+         <button *ngIf="q.currentStatus=='SUBMITTED'" (click)="editchk(q)">Edit</button>
+       
+     
+      </tr>
+     
+      </tbody>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+     </table>
+   </div> 
